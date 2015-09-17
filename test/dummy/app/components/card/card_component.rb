@@ -1,6 +1,5 @@
 class CardComponent < MountainView::Presenter
-  raise "Test".inspect
   def title
-    "Foobar"
+    ['Foobar', properties[:title]].join(' - ')
   end
 end
