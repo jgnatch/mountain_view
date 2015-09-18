@@ -1,7 +1,7 @@
 module MountainView
   class Presenter
-    class_attribute :_attributes
-    self._attributes = []
+    class_attribute :_attributes, instance_accessor: false
+    self._attributes = {}
 
     attr_reader :slug, :properties
 
@@ -20,28 +20,42 @@ module MountainView
     end
 
     def attributes
-      _attributes + properties.keys
+      @attributes ||= properties.keys.inject({}) do |sum, name|
+        sum[name] = {}
+        sum
+      end.merge(self.class._attributes)
     end
 
     private
 
+    def h
+      ActionController::Base.helpers
+    end
+
     def build_hash
-      attributes.inject({}) do|sum, k|
-        sum[k] = get_property(k)
+      attributes.inject({}) do|sum, (k, v)|
+        sum[k] = attribute_value(k)
         sum
       end
     end
 
-    def get_property(key)
-      if respond_to?(key)
-        send(key)
-      else
-        properties[key]
-      end
+    def attribute_value(key)
+      attribute = attributes[key] || return
+      value = respond_to?(key) ? send(key) : properties[key]
+      value || attribute[:default]
     end
 
-    def self.attributes(*args)
-      self._attributes += args
+    class << self
+      def attributes(*args)
+        opts = args.extract_options!
+        attributes = args.inject({}) do |sum, name|
+          sum[name] = opts
+          sum
+        end
+        self._attributes = self._attributes.merge(attributes)
+      end
+
+      alias_method :attribute, :attributes
     end
   end
 end

@@ -12,6 +12,7 @@
     <%- if properties[:description] %>
       <p><%= properties[:description] %></p>
     <%- end %>
+    <%= foobar %>
     <div class="card__content__data">
       <%- if properties[:data] && properties[:data].any? %>
         <%- properties[:data].each do |data| %>
