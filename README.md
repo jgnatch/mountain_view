@@ -61,6 +61,11 @@ coffee-script as long as you have these preprocessors running on your app.
 <div class="header">
   <h1>This is a header component with the title: <%= title %></h1>
   <h3>And subtitle <%= subtitle %></h3>
+  <ul>
+    <% links.each do |link| %>
+      <li><%= link %></li>
+    <% end %>
+  </ul>
 </div>
 ```
 
@@ -68,6 +73,7 @@ coffee-script as long as you have these preprocessors running on your app.
 # app/components/header/header_component.rb
 class HeaderComponent < MountainView::Presenter
   attributes :title, :subtitle
+  attribute :links, default: []
 
   def title
     properties[:title].titleize
