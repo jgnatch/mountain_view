@@ -57,5 +57,11 @@ module MountainView
 
       alias_method :attribute, :attributes
     end
+
+    def self.component_for(slug, properties={})
+      klass = descendants.find{|d| d.to_s.demodulize == "#{slug.to_s.classify}Component" }
+      klass ||= self
+      klass.new(slug, properties)
+    end
   end
 end
