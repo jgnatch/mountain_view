@@ -10,4 +10,10 @@ class CardComponent < MountainView::Presenter
   def foobar
     h.content_tag(:p, "Foobar!!")
   end
+
+  private
+
+  def h
+    ActionController::Base.helpers
+  end
 end

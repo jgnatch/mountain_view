@@ -28,10 +28,6 @@ module MountainView
 
     private
 
-    def h
-      ActionController::Base.helpers
-    end
-
     def build_hash
       attributes.inject({}) do|sum, (k, v)|
         sum[k] = attribute_value(k)
