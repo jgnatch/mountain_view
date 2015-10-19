@@ -8,7 +8,7 @@ module MountainView
 
     def initialize(slug, properties={})
       @slug = slug
-      @properties = attribute_defaults.merge(properties)
+      @properties = attribute_defaults.deep_merge(properties)
     end
 
     def partial
