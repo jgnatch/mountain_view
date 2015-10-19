@@ -56,7 +56,7 @@ module MountainView
     end
 
     def self.component_for(slug, properties={})
-      klass = descendants.find{|d| d.to_s.demodulize == "#{slug.to_s.classify}Component" }
+      klass = "#{slug.to_s.classify}Component".safe_constantize
       klass ||= self
       klass.new(slug, properties)
     end
