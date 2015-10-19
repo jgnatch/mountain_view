@@ -8,7 +8,7 @@ module MountainView
 
     def initialize(slug, properties={})
       @slug = slug
-      @properties = properties
+      @properties = attribute_defaults.merge(properties)
     end
 
     def partial
@@ -38,8 +38,14 @@ module MountainView
 
     def attribute_value(key)
       attribute = attributes[key] || return
-      value = respond_to?(key) ? send(key) : properties[key]
-      value || attribute[:default]
+      respond_to?(key) ? send(key) : properties[key]
+    end
+
+    def attribute_defaults
+      self.class._attributes.inject({}) do |sum, (k, v)|
+        sum[k] = v[:default]
+        sum
+      end
     end
 
     class << self
