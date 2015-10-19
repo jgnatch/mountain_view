@@ -20,14 +20,14 @@ module MountainView
       locals.merge(properties: locals)
     end
 
+    private
+
     def attributes
       @attributes ||= properties.keys.inject({}) do |sum, name|
         sum[name] = {}
         sum
       end.merge(self.class._attributes)
     end
-
-    private
 
     def build_hash
       attributes.inject({}) do|sum, (k, v)|
