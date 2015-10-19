@@ -4,6 +4,7 @@ module MountainView
     self._attributes = {}
 
     attr_reader :slug, :properties
+    alias_method :props, :properties
 
     def initialize(slug, properties={})
       @slug = slug
