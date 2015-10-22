@@ -4,7 +4,7 @@ class CardComponent < MountainView::Presenter
   attribute :foobar
 
   def title
-    ['Foobar', properties[:title]].join(' - ')
+    ["Foobar", properties[:title]].join(" - ")
   end
 
   def foobar
