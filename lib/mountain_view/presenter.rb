@@ -6,7 +6,7 @@ module MountainView
     attr_reader :slug, :properties
     alias_method :props, :properties
 
-    def initialize(slug, properties={})
+    def initialize(slug, properties = {})
       @slug = slug
       @properties = attribute_defaults.deep_merge(properties)
     end
@@ -61,7 +61,7 @@ module MountainView
       alias_method :attribute, :attributes
     end
 
-    def self.component_for(slug, properties={})
+    def self.component_for(slug, properties = {})
       klass = "#{slug.to_s.classify}Component".safe_constantize
       klass ||= self
       klass.new(slug, properties)
