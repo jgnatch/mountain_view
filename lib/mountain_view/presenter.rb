@@ -52,7 +52,7 @@ module MountainView
           sum[name] = opts
           sum
         end
-        self._attributes = self._attributes.merge(attributes)
+        self._attributes = _attributes.merge(attributes)
       end
 
       alias_method :attribute, :attributes
