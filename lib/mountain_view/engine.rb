@@ -11,8 +11,10 @@ module MountainView
       end
     end
 
-    initializer "mountain_view.load_component_classes", before: :set_autoload_paths do |app|
-      app.config.autoload_paths += Dir["#{MountainView.configuration.components_path}/{*}"]
+    initializer "mountain_view.load_component_classes", 
+      before: :set_autoload_paths do |app|
+      component_paths = "#{MountainView.configuration.components_path}/{*}"
+      app.config.autoload_paths += Dir[component_paths]
     end
 
     initializer "mountain_view.assets" do |app|
