@@ -16,28 +16,25 @@ module MountainView
     end
 
     def locals
-      locals = build_hash
+      locals = build_locals
       locals.merge(properties: locals)
     end
 
     private
 
-    def attributes
-      @attributes ||= properties.keys.inject({}) do |sum, name|
-        sum[name] = {}
-        sum
-      end.merge(self.class._attributes)
-    end
-
-    def build_hash
-      attributes.inject({}) do|sum, (k, v)|
-        sum[k] = attribute_value(k)
+    def build_locals
+      attributes.inject({}) do|sum, attr|
+        sum[attr] = attribute_value(attr)
         sum
       end
     end
 
+    def attributes
+      @attributes ||= (properties.keys + self.class._attributes.keys)
+    end
+
     def attribute_value(key)
-      attribute = attributes[key] || return
+      return unless attributes.include?(key)
       respond_to?(key) ? send(key) : properties[key]
     end
 
