@@ -59,7 +59,7 @@ module MountainView
     end
 
     def self.component_for(slug, properties = {})
-      klass = "#{slug.to_s.classify}Component".safe_constantize
+      klass = "#{slug.to_s.camelize}Component".safe_constantize
       klass ||= self
       klass.new(slug, properties)
     end
