@@ -58,10 +58,10 @@ module MountainView
       alias_method :property, :properties
     end
 
-    def self.component_for(slug, properties = {})
-      klass = "#{slug.to_s.camelize}Component".safe_constantize
+    def self.component_for(*args)
+      klass = "#{args.first.to_s.camelize}Component".safe_constantize
       klass ||= self
-      klass.new(slug, properties)
+      klass.new(*args)
     end
   end
 end
