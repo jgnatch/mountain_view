@@ -1,5 +1,5 @@
 module MountainView
-  class Presenter
+  class Presenter < SimpleDelegator
     class_attribute :_properties, instance_accessor: false
     self._properties = {}
 
@@ -9,34 +9,21 @@ module MountainView
     def initialize(slug, properties = {})
       @slug = slug
       @properties = property_defaults.deep_merge(properties)
+      super(OpenStruct.new(@properties)) # Could use method_missing?
     end
 
-    def property_names
-      @property_names ||= (properties.keys + self.class._properties.keys)
+    def render(context)
+      context = context.clone
+      context.extend ViewContext
+      context.inject_component_context(self)
+      context.render partial: partial
     end
 
     def partial
       "#{slug}/#{slug}"
     end
 
-    def locals
-      locals = build_locals
-      locals.merge(properties: locals)
-    end
-
     private
-
-    def build_locals
-      property_names.inject({}) do|sum, attr|
-        sum[attr] = property_value(attr)
-        sum
-      end
-    end
-
-    def property_value(key)
-      return unless property_names.include?(key)
-      respond_to?(key) ? send(key) : properties[key]
-    end
 
     def property_defaults
       self.class._properties.inject({}) do |sum, (k, v)|
@@ -62,6 +49,18 @@ module MountainView
       klass = "#{args.first.to_s.camelize}Component".safe_constantize
       klass ||= self
       klass.new(*args)
+    end
+
+    module ViewContext
+      attr_reader :_component
+      delegate :properties, to: :_component
+
+      def inject_component_context(component)
+        @_component = component
+        properties.keys.each do |prop|
+          self.class.delegate prop, to: :_component
+        end
+      end
     end
   end
 end
