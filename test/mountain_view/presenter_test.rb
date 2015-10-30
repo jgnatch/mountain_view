@@ -1,7 +1,7 @@
 require "test_helper"
 class InheritedPresenter < MountainView::Presenter
-  attributes :title, :description
-  attribute :data, default: []
+  properties :title, :description
+  property :data, default: []
 
   def title
     "Foo#{properties[:title].downcase}"
