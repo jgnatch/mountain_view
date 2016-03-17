@@ -1,7 +1,7 @@
 <% MountainView.configuration.included_stylesheets.each do |included_stylesheet| %>
   <%= require_asset included_stylesheet %>
 <% end %>
-<% if Dir.exist?(MountainView.configuration.components_path) %>
+<% if Dir.exists?(MountainView.configuration.components_path) %>
   <% depend_on MountainView.configuration.components_path.to_s %>
   <% Dir.glob(MountainView.configuration.components_path.join('*')).each do |component_dir|
     component = File.basename component_dir

@@ -26,8 +26,6 @@ Then execute:
 
     $ bundle
 
-Mountain View supports Ruby 2.0+.
-
 ## Usage
 
 Use the built-in generator to create a new component:
