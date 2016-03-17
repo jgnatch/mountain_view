@@ -1,37 +1,32 @@
 /*
 *= require_self
-*= require mountain_view
 *= require mountain_view/prism
 */
 
-/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
-
-body{
-  font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+.mountainview-styleguide-body {
   padding: 0;
   margin: 0;
 }
 
 /* HEADER */
-.mv-header{
+.mountainview-styleguide-header{
   background: #777;
   padding: 20px;
 }
-.mv-header__logo{
+.mountainview-styleguide-header__logo{
   font-weight: bold;
   color: white;
   font-size: 20px;
 }
 
-/* FlEX WRAPPER */
+/* FLEX WRAPPER */
 
-.mv-flex-wrapper{
+.mountainview-styleguide-flex-wrapper{
   display: flex;
 }
 
 /* SIDEBAR */
-.mv-sidebar{
+.mountainview-styleguide-sidebar{
   background: #F7F7F7;
   width: 18%;
   box-sizing: border-box;
@@ -42,93 +37,93 @@ body{
   min-height: 100vh;
 }
 
-.mv-sidebar h3{
+.mountainview-styleguide-sidebar h3{
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 25px;
   color: #444;
 }
 
-.mv-sidebar ul{
+.mountainview-styleguide-sidebar ul{
 }
 
-.mv-sidebar ul li{
+.mountainview-styleguide-sidebar ul li{
   margin-bottom: 20px;
 }
 
-.mv-sidebar ul li a{
+.mountainview-styleguide-sidebar ul li a{
   color: #555;
   font-size: 14px;
   text-decoration: none;
   font-weight: 300;
 }
 
-.mv-sidebar ul li a:hover{
+.mountainview-styleguide-sidebar ul li a:hover{
   color: #000;
 }
 
 /* MAIN */
-.mv-main{
+.mountainview-styleguide-main{
   box-sizing: border-box;
   width: 82%;
   float: left;
   padding: 30px 60px;
 }
-.mv-main__header{
+.mountainview-styleguide-main__header{
   margin-bottom: 40px;
 }
 
-.mv-main__header h1{
+.mountainview-styleguide-main__header h1{
   font-weight: 100;
   font-size: 55px;
   color: #333;
 }
 
-.mv-main__description {
+.mountainview-styleguide-main__description {
 }
 
 /* COMPONENT */
-.mv-component{
+.mountainview-styleguide-component{
   margin-bottom: 150px;
 }
 
-.mv-component__item{
+.mountainview-styleguide-component__item{
 }
 
-.mv-component__meta{
+.mountainview-styleguide-component__meta{
   padding: 25px;
   margin-bottom: 20px;
   background: #F7F7F7;
   border: 1px solid #E4E4E4;
 }
 
-.mv-component__meta p{
+.mountainview-styleguide-component__meta p{
   color: #000;
 }
 
-.mv-component__description{
+.mountainview-styleguide-component__description{
   padding: 25px;
   background: #F7F7F7;
   border: 1px solid #E4E4E4;
   margin-top: 30px;
 }
 
-.mv-component__description h2{
+.mountainview-styleguide-component__description h2{
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.mv-component__description__definition{
+.mountainview-styleguide-component__description__definition{
   margin-bottom: 20px;
 }
 
-.mv-component__description__definition code,
-.mv-component__description__properties code {
+.mountainview-styleguide-component__description__definition code,
+.mountainview-styleguide-component__description__properties code {
   background: none !important;
   font-size: 14px;
 }
 
-.mv-component__description__properties{
+.mountainview-styleguide-component__description__properties{
   background: #fff !important;
   border: 1px solid #e4e4e4;
   max-height: 230px;
@@ -139,7 +134,7 @@ body{
 
 
 /* HINT */
-.mv-hint{
+.mountainview-styleguide-hint{
   margin: 40px 0;
   padding: 30px;
   font-size: 14px;
@@ -148,27 +143,27 @@ body{
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.mv-hint h2{
+.mountainview-styleguide-hint h2{
   font-size: 19px;
   margin-bottom: 20px;
   color: #000;
 }
-.mv-hint h2 span{
+.mountainview-styleguide-hint h2 span{
   color: #FCCC37;
   margin-right: 5px;
   font-weight: bold;
 }
 
-.mv-hint ul{
+.mountainview-styleguide-hint ul{
   list-style-type: disc;
   margin-left: 15px;
 }
-.mv-hint ul li{
+.mountainview-styleguide-hint ul li{
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
-.mv-hint pre{
+.mountainview-styleguide-hint pre{
   background: #F5F5F5;
   padding: 15px 30px;
   border-radius: 5px;
@@ -178,6 +173,6 @@ body{
   color: #444;
 }
 
-.mv-hint strong{
+.mountainview-styleguide-hint strong{
   font-weight: bold;
 }

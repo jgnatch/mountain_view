@@ -3,27 +3,30 @@
 <head>
   <title>Styleguide</title>
   <%= stylesheet_link_tag 'mountain_view/styleguide', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'mountain_view/styleguide', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class="mv-header">
-    <div class="mv-header__logo">STYLEGUIDE</div>
-  </div>
-  <div class="mv-flex-wrapper">
-    <div class="mv-sidebar">
-      <h3>COMPONENTS</h3>
-      <ul>
-        <%- mv_components.each do |component| %>
-          <li>
-            <%= link_to component.title, styleguide_path(id: component.name) %>
-          </li>
-        <% end %>
-      </ul>
+<body class='mountainview-styleguide-body'>
+  <div class='mountainview-styleguide-wrapper'>
+    <div class="mountainview-styleguide-header">
+      <div class="mountainview-styleguide-header__logo">STYLEGUIDE</div>
     </div>
-    <div class="mv-main">
-      <%= yield %>
+    <div class="mountainview-styleguide-flex-wrapper">
+      <div class="mountainview-styleguide-sidebar">
+        <h3>COMPONENTS</h3>
+        <ul>
+          <%- mv_components.each do |component| %>
+            <li>
+              <%= link_to component.title, styleguide_path(id: component.name) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="mountainview-styleguide-main">
+        <%= yield %>
+      </div>
     </div>
   </div>
 </body>
