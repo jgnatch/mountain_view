@@ -11,7 +11,6 @@ module MountainView
     end
 
     def render(context)
-      context = context.clone
       context.extend ViewContext
       context.inject_component_context(self)
       context.render partial: partial
