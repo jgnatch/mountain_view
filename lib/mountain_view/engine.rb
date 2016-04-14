@@ -1,6 +1,4 @@
 require "rails"
-require "mountain_view"
-require "mountain_view/component"
 
 module MountainView
   class Engine < ::Rails::Engine
