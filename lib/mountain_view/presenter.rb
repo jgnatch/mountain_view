@@ -1,15 +1,13 @@
 module MountainView
-  class Presenter < SimpleDelegator
+  class Presenter
     class_attribute :_properties, instance_accessor: false
     self._properties = {}
 
     attr_reader :slug, :properties
-    alias_method :props, :properties
 
     def initialize(slug, properties = {})
       @slug = slug
       @properties = property_defaults.deep_merge(properties)
-      super(OpenStruct.new(@properties)) # Could use method_missing?
     end
 
     def render(context)
@@ -39,16 +37,25 @@ module MountainView
           sum[name] = opts
           sum
         end
+        define_property_methods(*args)
         self._properties = _properties.merge(properties)
       end
-
       alias_method :property, :properties
-    end
 
-    def self.component_for(*args)
-      klass = "#{args.first.to_s.camelize}Component".safe_constantize
-      klass ||= self
-      klass.new(*args)
+      def define_property_methods(*names)
+        names.each do |name|
+          next if method_defined?(name) 
+          define_method name do
+            properties[name.to_sym]
+          end
+        end
+      end
+
+      def component_for(*args)
+        klass = "#{args.first.to_s.camelize}Component".safe_constantize
+        klass ||= self
+        klass.new(*args)
+      end
     end
 
     module ViewContext
