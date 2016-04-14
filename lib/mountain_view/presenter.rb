@@ -7,7 +7,7 @@ module MountainView
 
     def initialize(slug, properties = {})
       @slug = slug
-      @properties = property_defaults.deep_merge(properties)
+      @properties = default_properties.deep_merge(properties)
     end
 
     def render(context)
@@ -22,7 +22,7 @@ module MountainView
 
     private
 
-    def property_defaults
+    def default_properties
       self.class._properties.inject({}) do |sum, (k, v)|
         sum[k] = v[:default]
         sum
@@ -42,12 +42,14 @@ module MountainView
           sum[name] = opts
           sum
         end
-        define_property_methods(*args)
+        define_property_methods(args)
         self._properties = _properties.merge(properties)
       end
       alias_method :property, :properties
 
-      def define_property_methods(*names)
+      private 
+      
+      def define_property_methods(names=[])
         names.each do |name|
           next if method_defined?(name) 
           define_method name do
