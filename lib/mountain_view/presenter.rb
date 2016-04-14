@@ -30,6 +30,12 @@ module MountainView
     end
 
     class << self
+      def component_for(*args)
+        klass = "#{args.first.to_s.camelize}Component".safe_constantize
+        klass ||= self
+        klass.new(*args)
+      end
+
       def properties(*args)
         opts = args.extract_options!
         properties = args.inject({}) do |sum, name|
@@ -49,22 +55,18 @@ module MountainView
           end
         end
       end
-
-      def component_for(*args)
-        klass = "#{args.first.to_s.camelize}Component".safe_constantize
-        klass ||= self
-        klass.new(*args)
-      end
     end
 
     module ViewContext
       attr_reader :_component
       delegate :properties, to: :_component
-
+      
       def inject_component_context(component)
         @_component = component
-        properties.keys.each do |prop|
-          self.class.delegate prop, to: :_component
+        methods = component.public_methods(false) - [:slug, :properties, :render, :partial]
+        methods.each do |meth|
+          next if self.class.method_defined?(meth)
+          self.class.delegate meth, to: :_component
         end
       end
     end
