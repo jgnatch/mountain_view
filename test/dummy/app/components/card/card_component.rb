@@ -1,19 +1,14 @@
 class CardComponent < MountainView::Presenter
-  attributes :title, :description, :link, :image_url
-  attribute :data, default: []
-  attribute :foobar
+  include ActionView::Helpers::TagHelper
+  
+  properties :title, :description, :link, :image_url, :location
+  property :data, default: []
 
   def title
-    ["Foobar", properties[:title]].join(" - ")
+    [location, properties[:title]].compact.join(", ")
   end
-
-  def foobar
-    h.content_tag(:p, "Foobar!!")
-  end
-
-  private
-
-  def h
-    ActionController::Base.helpers
+  
+  def has_description?
+    description.present?
   end
 end

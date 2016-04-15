@@ -7,12 +7,12 @@
   <% end %>
   <div class="card__content">
     <h3 class="card__content__title">
-      <a href="<%= properties[:link] %>"><%= properties[:title] %></a>
+      <a href="<%= properties[:link] %>"><%= title %></a>
     </h3>
-    <%- if properties[:description] %>
+    <%- if has_description? %>
       <p><%= properties[:description] %></p>
     <%- end %>
-    <%= foobar %>
+    <p>Location: <%= location %></p>
     <div class="card__content__data">
       <%- if properties[:data] && properties[:data].any? %>
         <%- properties[:data].each do |data| %>

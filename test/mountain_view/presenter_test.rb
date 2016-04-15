@@ -1,4 +1,5 @@
 require "test_helper"
+
 class InheritedPresenter < MountainView::Presenter
   properties :title, :description
   property :data, default: []
@@ -8,27 +9,30 @@ class InheritedPresenter < MountainView::Presenter
   end
 end
 
-class MountainViewPresenterTest < ActiveSupport::TestCase
-  def test_partial
+class MountainView::PresenterTest < ActiveSupport::TestCase
+  test 'returns the correct partial path' do
     presenter = MountainView::Presenter.new("header")
     assert_equal "header/header", presenter.partial
   end
-
-  def test_locals
-    properties = { name: "Foo", title: "Bar" }
+  
+  test 'exposes properties as provided' do
+    properties = {:foo => 'bar', :hello => 'world'}
     presenter = MountainView::Presenter.new("header", properties)
-    assert_equal add_properties(properties), presenter.locals
+    assert_equal properties, presenter.properties
   end
-
-  def test_inherited_locals
-    properties = { name: "Foo", title: "Bar" }
-    presenter = InheritedPresenter.new("header", properties)
-    presenter_properties = { title: "Foobar", description: nil, data: [] }
-    expected_properties = properties.merge(presenter_properties)
-    assert_equal add_properties(expected_properties), presenter.locals
+  
+  test 'inherited presenter returns the correct title' do
+    presenter = InheritedPresenter.new('inherited', {:title => 'Bar'})
+    assert_equal 'Foobar', presenter.title
   end
-
-  def add_properties(properties)
-    properties.merge(properties: properties)
+  
+  test 'inherited presenter responds to #data' do
+    presenter = InheritedPresenter.new('inherited', {:data => ['Foobar']})
+    assert_equal ['Foobar'], presenter.data
+  end
+  
+  test 'inherited presenter returns the default value for #data' do
+    presenter = InheritedPresenter.new('inherited', {})
+    assert_equal [], presenter.data
   end
 end
