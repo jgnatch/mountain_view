@@ -20,6 +20,10 @@ module MountainView
       "#{slug}/#{slug}"
     end
 
+    def exposed_methods
+      public_methods(false) - [:slug, :properties, :render, :partial]
+    end
+
     private
 
     def default_properties
@@ -47,11 +51,11 @@ module MountainView
       end
       alias_method :property, :properties
 
-      private 
-      
-      def define_property_methods(names=[])
+      private
+
+      def define_property_methods(names = [])
         names.each do |name|
-          next if method_defined?(name) 
+          next if method_defined?(name)
           define_method name do
             properties[name.to_sym]
           end
@@ -62,11 +66,10 @@ module MountainView
     module ViewContext
       attr_reader :_component
       delegate :properties, to: :_component
-      
+
       def inject_component_context(component)
         @_component = component
-        methods = component.public_methods(false) - [:slug, :properties, :render, :partial]
-        methods.each do |meth|
+        component.exposed_methods.each do |meth|
           next if self.class.method_defined?(meth)
           self.class.delegate meth, to: :_component
         end
