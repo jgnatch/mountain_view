@@ -12,7 +12,7 @@ module MountainView
 
     def render(context)
       context.extend ViewContext
-      context.inject_component_context(self)
+      context.inject_component_context self
       context.render self
     end
 
@@ -48,7 +48,7 @@ module MountainView
       alias_method :property, :properties
 
       private 
-      
+
       def define_property_methods(names=[])
         names.each do |name|
           next if method_defined?(name) 
@@ -62,16 +62,17 @@ module MountainView
     module ViewContext
       attr_reader :_component
       delegate :properties, to: :_component
-      
+
       def inject_component_context(component)
         @_component = component
-        methods = component.public_methods(false) - [:slug, :properties, :render, :partial]
+        protected_methods = MountainView::Presenter.public_methods(false)
+        methods = component.public_methods(false) - protected_methods
         methods.each do |meth|
           next if self.class.method_defined?(meth)
           self.class.delegate meth, to: :_component
         end
       end
-      
+
       def prefix_partial_path_with_controller_namespace
         false
       end
