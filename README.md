@@ -46,6 +46,7 @@ app/
       header.css
       header.js
       header.yml
+      header_component.rb # optional
 ```
 
 Keep in mind that you can also use `scss`, `coffeescript`, `haml`, or any other
@@ -60,10 +61,39 @@ coffee-script as long as you have these preprocessors running on your app.
 ```erb
 <!-- app/components/header/_header.html.erb -->
 <div class="header">
-  <h1>This is a header component with the title: <%= properties[:title] %></h1>
-  <h3>And subtitle <%= properties[:subtitle] %></h3>
+  <h1>This is a header component with the title: <%= title %></h1>
+  <h3>And subtitle <%= subtitle %></h3>
+  <% if show_links? %>
+    <ul>
+      <% links.each do |link| %>
+        <li><%= link %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
 ```
+
+```ruby
+# app/components/header/header_component.rb
+class HeaderComponent < MountainView::Presenter
+  properties :title, :subtitle
+  property :links, default: []
+
+  def title
+    properties[:title].titleize
+  end
+
+  def show_links?
+    links.any?
+  end
+end
+```
+
+Including a component class is optional, but it helps avoid polluting your
+views and helpers with presenter logic. Public methods in your component class
+will be made available to the view, along with any properties you define. 
+You can also access all properties using the `properties` method in your 
+component class and views. You can even define property defaults.
 
 ### Using components on your views
 You can then call your components on any view by using the following

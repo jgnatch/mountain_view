@@ -1,5 +1,7 @@
 require "mountain_view/version"
 require "mountain_view/configuration"
+require "mountain_view/presenter"
+require "mountain_view/component"
 
 module MountainView
   def self.configuration

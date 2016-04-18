@@ -1,5 +1,4 @@
 require "rails"
-require "mountain_view/component"
 
 module MountainView
   class Engine < ::Rails::Engine
@@ -9,6 +8,12 @@ module MountainView
       MountainView.configure do |c|
         c.components_path ||= app.root.join("app", "components")
       end
+    end
+
+    initializer "mountain_view.load_component_classes",
+                before: :set_autoload_paths do |app|
+      component_paths = "#{MountainView.configuration.components_path}/{*}"
+      app.config.autoload_paths += Dir[component_paths]
     end
 
     initializer "mountain_view.assets" do |app|
