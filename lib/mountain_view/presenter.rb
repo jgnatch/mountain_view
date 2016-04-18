@@ -76,6 +76,10 @@ module MountainView
       def prefix_partial_path_with_controller_namespace
         false
       end
+
+      def prefixes
+        []
+      end
     end
   end
 end
