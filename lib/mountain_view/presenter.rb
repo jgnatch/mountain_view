@@ -13,10 +13,10 @@ module MountainView
     def render(context)
       context.extend ViewContext
       context.inject_component_context self
-      context.render self
+      context.render partial: partial
     end
 
-    def to_partial_path
+    def partial
       "#{slug}/#{slug}"
     end
 
@@ -49,7 +49,7 @@ module MountainView
 
       private 
 
-      def define_property_methods(names=[])
+      def define_property_methods(names = [])
         names.each do |name|
           next if method_defined?(name) 
           define_method name do
@@ -71,14 +71,6 @@ module MountainView
           next if self.class.method_defined?(meth)
           self.class.delegate meth, to: :_component
         end
-      end
-
-      def prefix_partial_path_with_controller_namespace
-        false
-      end
-
-      def prefixes
-        []
       end
     end
   end

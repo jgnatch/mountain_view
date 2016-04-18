@@ -12,7 +12,7 @@ end
 class MountainView::PresenterTest < ActiveSupport::TestCase
   test "returns the correct partial path" do
     presenter = MountainView::Presenter.new("header")
-    assert_equal "header/header", presenter.to_partial_path
+    assert_equal "header/header", presenter.partial
   end
 
   test "exposes properties as provided" do
