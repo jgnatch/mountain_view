@@ -1,0 +1,12 @@
+:meta: 'There is a class with form builder object'
+:stubs:
+  -
+    :id: 1
+    :some_model: !ruby/object:Something
+      attributes:
+        name: 'blabla'
+    :form:
+      !ruby/object:MountainView::Helpers::FormBuilder
+        model: !ruby/object:Something
+          attributes:
+            name: 'something name'

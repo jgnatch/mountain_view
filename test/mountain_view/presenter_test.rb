@@ -35,4 +35,13 @@ class MountainView::PresenterTest < ActiveSupport::TestCase
     presenter = InheritedPresenter.new("inherited", {})
     assert_equal [], presenter.data
   end
+
+  test "loading of custom objects" do
+    component = MountainView::Component.new("form_custom_button")
+    stub_data = component.component_stubs.first
+    presenter = FormCustomButtonComponent.new("form_custom_button", stub_data)
+    assert_equal MountainView::Helpers::FormBuilder, presenter.form.class
+    assert_equal Something, presenter.some_model.class
+    assert_equal "blabla", presenter.some_model.name
+  end
 end

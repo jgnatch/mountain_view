@@ -152,6 +152,56 @@ E.g: `app/components/card/card.yml`
   :link: "http://google.com"
 
 ```
+
+If your component depends on a form builder object you can use the following statement:
+
+```yml
+:meta: 'There is a class with form builder object'
+:stubs:
+  -
+    :form:
+      !ruby/object:MountainView::Helpers::FormBuilder
+        model: !ruby/object:Something
+          attributes:
+            name: 'something name'
+```
+
+Also you can stub any ruby class with the following method:
+
+
+```yml
+:meta: 'There is a class with an AR object'
+:stubs:
+  -
+    :some_model: !ruby/object:Something
+      attributes:
+        name: 'blabla'
+```
+
+For any complex logic you can define a custom Compoenent Stub with `init_with(coder)` method which will receive a `#map` with attributes loaded from yaml file:
+
+```yml
+:meta: 'There is a class with a complex logic'
+:stubs:
+  -
+    :some_model: !ruby/object:ComponentStub
+      params:
+        - 'blabla'
+        - 'nothing'
+      name: 'Some Name'
+```
+
+```ruby
+class ComponentStub < SomeModel # SomeModel could be AR class
+  def init_with(coder)
+    param1 = coder.map["params"].first
+    somename = coder.map["name"]
+    # or `@properties = coder.map`
+    initialize(param1, somename) # call initializer of SomeModel
+  end
+end
+```
+
 3) Vist `http://localhost:3000/mountain_view/styleguide`
 
 #### Example Style Guide

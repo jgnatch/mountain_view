@@ -1,0 +1,4 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - spec/dummy/db/schema.rb

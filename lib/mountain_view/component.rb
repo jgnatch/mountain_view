@@ -55,5 +55,17 @@ module MountainView
     def stubs_are_a_hash_with_info?
       styleguide_stubs.is_a?(Hash) && styleguide_stubs.key?(:stubs)
     end
+
+    def create_form_builder(stub)
+      ActionView::Base.default_form_builder.new(stub.class.model_name.param_key,
+                                                stub,
+                                                ActionView::Base.new,
+                                                {})
+    rescue
+      ActionView::Base.default_form_builder.new(stub.class.model_name.param_key,
+                                                stub,
+                                                ActionView::Base.new,
+                                                {}, nil)
+    end
   end
 end

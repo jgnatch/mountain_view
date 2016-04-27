@@ -27,6 +27,11 @@ class MountainViewComponentTest < ActiveSupport::TestCase
             },
             { id: 2,
               title: "You won't believe what happened to this man at Aspen"
+            },
+            {
+              id: 3,
+              title: "Testing form objects",
+              form: { "form_for" => "Object" }
             }
           ]
       }
@@ -47,6 +52,11 @@ class MountainViewComponentTest < ActiveSupport::TestCase
         {
           id: 2,
           title: "You won't believe what happened to this man at Aspen"
+        },
+        {
+          id: 3,
+          title: "Testing form objects",
+          form: { "form_for" => "Object" }
         }
       ]
     assert_instance_of Array, component.component_stubs
