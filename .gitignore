@@ -9,3 +9,5 @@ test/dummy/.sass-cache
 Gemfile.lock
 test/tmp
 *.gem
+
+*.swp

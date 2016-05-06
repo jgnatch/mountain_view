@@ -11,6 +11,19 @@ module MountainView
     end
 
     def styleguide_stubs
+      handle_proc = proc { |type, val|
+        _tag, _domain, object_type = type.split(":")
+        case object_type
+        when "Object"
+          attrs = val["attributes"]
+          obj = val["class"].constantize.new(attrs)
+          MountainView::Helpers::ObjectWrapper.new(obj, attrs)
+        when "Form"
+          MountainView::Helpers::FormBuilder.new(val["for"])
+        end
+      }
+      Psych.add_domain_type("mountain_view", "Object", &handle_proc)
+      Psych.add_domain_type("mountain_view", "Form", &handle_proc)
       YAML.load_file(stubs_file) || {}
     rescue Errno::ENOENT
       {}

@@ -16,3 +16,5 @@ end
 # for generators
 require "rails/generators/test_case"
 require "generators/mountain_view/component_generator"
+
+load "#{Rails.root}/db/schema.rb"

@@ -1,0 +1,18 @@
+:meta: 'There is a class with form builder object'
+:stubs:
+  -
+    :id: 1
+    :some_model: !mountain_view:Object
+      class: Something
+      attributes:
+        name: 'blabla'
+    :some_another_model: !Object
+      class: Something
+      attributes:
+        name: 'another blabla'
+    :form:
+      !Form
+        for: !Object
+          class: Something
+          attributes:
+            name: 'something name'
