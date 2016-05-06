@@ -2,11 +2,17 @@
 :stubs:
   -
     :id: 1
-    :some_model: !ruby/object:Something
+    :some_model: !mountain_view:Object
+      class: Something
       attributes:
         name: 'blabla'
+    :some_another_model: !Object
+      class: Something
+      attributes:
+        name: 'another blabla'
     :form:
-      !ruby/object:MountainView::Helpers::FormBuilder
-        model: !ruby/object:Something
+      !Form
+        for: !Object
+          class: Something
           attributes:
             name: 'something name'

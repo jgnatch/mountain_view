@@ -27,11 +27,6 @@ class MountainViewComponentTest < ActiveSupport::TestCase
             },
             { id: 2,
               title: "You won't believe what happened to this man at Aspen"
-            },
-            {
-              id: 3,
-              title: "Testing form objects",
-              form: { "form_for" => "Object" }
             }
           ]
       }
@@ -52,11 +47,6 @@ class MountainViewComponentTest < ActiveSupport::TestCase
         {
           id: 2,
           title: "You won't believe what happened to this man at Aspen"
-        },
-        {
-          id: 3,
-          title: "Testing form objects",
-          form: { "form_for" => "Object" }
         }
       ]
     assert_instance_of Array, component.component_stubs
@@ -137,5 +127,17 @@ class MountainViewComponentTest < ActiveSupport::TestCase
     assert_equal true, component_with_stubs.stubs?
     assert_equal false, component_without_stub_file.stubs?
     assert_equal false, component_with_empty_stub_file.stubs?
+  end
+
+  def test_component_stubs_pretty_json
+    component = MountainView::Component.new("form_custom_button")
+    component_properties = component.component_stubs.first
+    json = JSON.pretty_generate component_properties
+
+    model_pattern = /Something.new\({:name=>"blabla"}\)/
+    form_pattern = /form_for\(Something.new\({:name=>\"something name\"}\)\)/
+
+    assert_match(model_pattern, json)
+    assert_match(form_pattern, json)
   end
 end

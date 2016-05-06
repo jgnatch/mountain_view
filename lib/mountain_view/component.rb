@@ -11,6 +11,19 @@ module MountainView
     end
 
     def styleguide_stubs
+      handle_proc = proc { |type, val|
+        _tag, _domain, object_type = type.split(":")
+        case object_type
+        when "Object"
+          attrs = val["attributes"]
+          obj = val["class"].constantize.new(attrs)
+          MountainView::Helpers::ObjectWrapper.new(obj, attrs)
+        when "Form"
+          MountainView::Helpers::FormBuilder.new(val["for"])
+        end
+      }
+      Psych.add_domain_type("mountain_view", "Object", &handle_proc)
+      Psych.add_domain_type("mountain_view", "Form", &handle_proc)
       YAML.load_file(stubs_file) || {}
     rescue Errno::ENOENT
       {}
@@ -54,18 +67,6 @@ module MountainView
 
     def stubs_are_a_hash_with_info?
       styleguide_stubs.is_a?(Hash) && styleguide_stubs.key?(:stubs)
-    end
-
-    def create_form_builder(stub)
-      ActionView::Base.default_form_builder.new(stub.class.model_name.param_key,
-                                                stub,
-                                                ActionView::Base.new,
-                                                {})
-    rescue
-      ActionView::Base.default_form_builder.new(stub.class.model_name.param_key,
-                                                stub,
-                                                ActionView::Base.new,
-                                                {}, nil)
     end
   end
 end

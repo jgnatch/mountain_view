@@ -1,24 +1,24 @@
 module MountainView
   module Helpers
     class FormBuilder < ActionView::Base.default_form_builder
-      def init_with(coder)
-        model = coder.map["model"]
-        create_form_builder(model)
+      attr_accessor :model
+
+      def initialize(model)
+        @model = model
+        super(@model.class.model_name.param_key,
+              @model,
+              ActionView::Base.new,
+              {})
+      rescue
+        super(@model.class.model_name.param_key,
+              @model,
+              ActionView::Base.new,
+              {},
+              nil)
       end
 
-      private
-
-      def create_form_builder(model)
-        initialize(model.class.model_name.param_key,
-                   model,
-                   ActionView::Base.new,
-                   {})
-      rescue
-        initialize(model.class.model_name.param_key,
-                   model,
-                   ActionView::Base.new,
-                   {},
-                   nil)
+      def to_json(_)
+        "form_for(#{model.to_json(nil)})"
       end
     end
   end

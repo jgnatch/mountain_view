@@ -3,6 +3,7 @@ require "mountain_view/configuration"
 require "mountain_view/presenter"
 require "mountain_view/component"
 require "mountain_view/helpers/form_builder"
+require "mountain_view/helpers/object_wrapper"
 
 module MountainView
   def self.configuration
