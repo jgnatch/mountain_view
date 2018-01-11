@@ -1,9 +1,10 @@
 module MountainView
   class Component
-    attr_reader :name
+    attr_reader :path, :name
 
-    def initialize(name)
-      @name = name
+    def initialize(path)
+      @name = File.basename(path)
+      @path = File.dirname(path)
     end
 
     def title
@@ -29,7 +30,7 @@ module MountainView
     end
 
     def stubs_file
-      MountainView.configuration.components_path.join(name, "#{name}.yml")
+      MountainView.configuration.components_path.join(path, name, "#{name}.yml")
     end
 
     def stubs?
