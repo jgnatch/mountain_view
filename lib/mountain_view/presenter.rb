@@ -3,10 +3,10 @@ module MountainView
     class_attribute :_properties, instance_accessor: false
     self._properties = {}
 
-    attr_reader :slug, :properties
+    attr_reader :path, :properties
 
-    def initialize(slug, properties = {})
-      @slug = slug
+    def initialize(path, properties = {})
+      @path = path
       @properties = default_properties.deep_merge(properties)
     end
 
@@ -18,7 +18,8 @@ module MountainView
     end
 
     def partial
-      "#{slug}/#{slug}"
+      slug, path = @path.split(/\/(?=[^\/]*$)/).reverse
+      path ? "#{path}/#{slug}/#{slug}" : "#{slug}/#{slug}"
     end
 
     private

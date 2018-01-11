@@ -15,6 +15,11 @@ class MountainView::PresenterTest < ActiveSupport::TestCase
     assert_equal "header/header", presenter.partial
   end
 
+  test "returns the correct partial nested path" do
+    presenter = MountainView::Presenter.new("admin/form/button")
+    assert_equal "admin/form/button/button", presenter.partial
+  end
+
   test "exposes properties as provided" do
     properties = { foo: "bar", hello: "world" }
     presenter = MountainView::Presenter.new("header", properties)
