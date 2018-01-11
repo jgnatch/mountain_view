@@ -7,6 +7,12 @@ class MountainViewComponentTest < ActiveSupport::TestCase
     assert_equal "header", component.name
   end
 
+  def test_nested_partial_name
+    component = MountainView::Component.new("form/input")
+
+    assert_equal "input", component.name
+  end
+
   def test_humanized_title
     component = MountainView::Component.new("social_media_icons")
 

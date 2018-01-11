@@ -11,4 +11,12 @@ class MountainView::StyleguideHelperTest < ActionView::TestCase
     assert components.index(breadcrumbs) < components.index(header)
     assert components.index(header) < components.index(yielder)
   end
+
+  test "returns a nested component" do
+    components = mv_components
+
+    input = components.find { |c| c.name == "input" }
+
+    assert components.index(input)
+  end
 end
