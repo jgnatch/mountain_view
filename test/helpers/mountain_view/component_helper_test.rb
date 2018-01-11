@@ -10,6 +10,13 @@ class MountainView::ComponentHelperTest < ActionView::TestCase
     assert_match %r(href=\"\/products\/1\"), rendered
   end
 
+  test "renders a nested proper component" do
+    rendered = render_component("form/input", type: "submit", name: "Golly gosh")
+
+    assert_match %r(type=\"submit\"), rendered
+    assert_match %r(name=\"Golly gosh\"), rendered
+  end
+
   test "renders when passed a block" do
     rendered = render_component("yielder") do
       "I appear to be in a block"

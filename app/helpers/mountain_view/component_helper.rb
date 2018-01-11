@@ -1,7 +1,7 @@
 module MountainView
   module ComponentHelper
-    def render_component(slug, properties = {}, &block)
-      component = MountainView::Presenter.component_for(slug, properties)
+    def render_component(path, properties = {}, &block)
+      component = MountainView::Presenter.component_for(path, properties)
       component.render(controller.view_context) do
         capture(&block) if block_given?
       end
