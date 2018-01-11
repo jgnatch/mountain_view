@@ -3,10 +3,11 @@ module MountainView
     class_attribute :_properties, instance_accessor: false
     self._properties = {}
 
-    attr_reader :path, :properties
+    attr_reader :path, :properties, :slug
 
     def initialize(path, properties = {})
-      @path = path
+      @slug = File.basename(path)
+      @path = File.dirname(path)
       @properties = default_properties.deep_merge(properties)
     end
 
@@ -18,8 +19,7 @@ module MountainView
     end
 
     def partial
-      slug, path = @path.split(%r{/(?=[^/]*$)}).reverse
-      path ? "#{path}/#{slug}/#{slug}" : "#{slug}/#{slug}"
+      path != '.' ? "#{path}/#{slug}/#{slug}" : "#{slug}/#{slug}"
     end
 
     private
