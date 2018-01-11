@@ -18,7 +18,7 @@ module MountainView
     end
 
     def partial
-      slug, path = @path.split(/\/(?=[^\/]*$)/).reverse
+      slug, path = @path.split(%r{/(?=[^/]*$)}).reverse
       path ? "#{path}/#{slug}/#{slug}" : "#{slug}/#{slug}"
     end
 
