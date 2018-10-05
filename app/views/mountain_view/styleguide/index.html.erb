@@ -1,12 +1,10 @@
-<div class="mv-main__header">
-  <h1>Styleguide</h1>
-</div>
 
 <% if mv_components.any? %>
-  <div class="mv-main__description">
-    Select one of the components from the side to view its examples and documentation.
-  </div>
+  <%= render 'mountain_view/styleguide_intro'  %>
 <% else %>
+  <div class="mv-main__header">
+    <h1>Styleguide</h1>
+  </div>
   <div class="mv-hint">
     <h2><span>Hint:</span>You haven't created any components yet</h2>
     <ul>
