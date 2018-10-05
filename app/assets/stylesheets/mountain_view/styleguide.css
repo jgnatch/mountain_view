@@ -19,9 +19,13 @@ body{
   padding: 20px;
 }
 .mv-header__logo{
-  font-weight: bold;
-  color: white;
-  font-size: 20px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+a.mv-header__logo, a.mv-header__logo:visited{
+    color: white;
+    text-decoration: none;
 }
 
 /* FlEX WRAPPER */
