@@ -23,7 +23,7 @@ body{
     color: white;
     font-size: 20px;
 }
-a.mv-header__logo, a.mv-header__logo:visited{
+.mv-header__logo a, .mv-header__logo a:visited{
     color: white;
     text-decoration: none;
 }
