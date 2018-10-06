@@ -1,0 +1,32 @@
+.header {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.header h1{
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.header a{
+  text-decoration: none;
+}
+
+.header a:hover{
+  text-decoration: underline;
+}
+
+.header h3{
+  font-size: 20px;
+  font-family: 'Georgia';
+  color:#888;
+}
+
+.header::after{
+  content: " ";
+  width: 100px;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  border-bottom: 5px solid #2C9140;
+}

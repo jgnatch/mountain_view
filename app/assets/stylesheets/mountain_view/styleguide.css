@@ -18,6 +18,12 @@ body{
   background: #777;
   padding: 20px;
 }
+
+.mv--black-background{
+    background: #000;
+    padding: 10px;
+}
+
 .mv-header__logo{
   font-weight: bold;
   color: white;

@@ -1,0 +1,6 @@
+<div class="header">
+  <h1><%= link_to properties[:title], product_path(properties[:id]) %></h1>
+  <%- if properties[:subtitle] %>
+    <h3><%= properties[:subtitle] %></h3>
+  <% end %>
+</div>

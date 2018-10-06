@@ -12,15 +12,24 @@
     <% if @component.component_stubs? %>
       <% @component.component_stubs.each_with_index do |component_properties, index| %>
           <div class="mv-component">
-            <div class="mv-component__item">
+            <% if @component.example_classes(component_properties).blank? %>
+              <% component_item_classes = 'mv-component__item' %>
+            <% else %>
+              <% component_item_classes = "mv-component__item #{@component.example_classes(component_properties)} " %>
+            <% end %>
+            <div class="<%= component_item_classes %>">
               <%= render_component @component.name, component_properties.clone %>
             </div>
             <div class="mv-component__description">
-              <h2><%= @component.title %> <%= index + 1 %></h2>
+              <h2><%= @component.example_title(component_properties, index) %></h2>
+              <% unless @component.example_description(component_properties).blank? %>
+                <p><%= @component.example_description(component_properties) %></p>
+                <br />
+              <% end %>
               <div class="mv-component__description__definition">
                 <code class="language-ruby">&lt;%= render_component("<%= @component.name %>", {properties as below}) %&gt;</code>
               </div>
-              <%- formatted = JSON.pretty_generate component_properties %>
+              <%- formatted = JSON.pretty_generate @component.remove_example_meta_properties(component_properties) %>
               <div class="mv-component__description__properties">
                 <code class="language-ruby"><%= formatted.gsub(/\"(\S+)?\":/, '\1:') %></code>
               </div>

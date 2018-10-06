@@ -234,6 +234,29 @@ MountainView.configure do |config|
 end
 ```
 
+## Customizing Look and Feel
+
+### Customizing the style guide
+
+To customize the styleguide, override the style guide layout by adding `mountain_view.html.erb` (or mountain_view.html.haml if using haml) to your application layouts folder in views. 
+
+### Custom meta data for stubs
+
+You can customize the title, description for each example in the stub, as well as the classes that surround the stub example.  In order to override the default title, add an `mv_title` key to the stub hash.  Additional special keys include `mv_description` which will add a description under the title for a given example and `mv_classes` which will add classes for a specific example. 
+
+E.g: `app/components/card/card.yml`
+```yml
+-
+  :mv_title: "Card Without Picture"
+  :mv_description: "These cards can be used on any background. Here is an example on a dark background"
+  :mv_classes: "mv--black-background"
+  :title: "Sunset on the Mountain"
+  :description: "Three major ranges of the Alps – the Northern Calcareous Alps, Central Alps, and Southern Calcareous Alps – run west to east through Austria. The Central Alps, which consist largely of a granite base, are the largest and highest ranges in Austria."
+  :link: "http://google.com"
+
+```
+
+
 ## Improving performance
 Rendering a large amount of partials in a request can lead to a performance bottleneck, usually this is caused by the parsing and rendering of template code such as ERB or HAML.
 
