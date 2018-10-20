@@ -9,7 +9,12 @@
 </head>
 <body>
   <div class="mv-header">
-    <div class="mv-header__logo"><a href="/mountain_view">STYLEGUIDE</a></div>
+    <div class="mv-header__logo">
+      <%= if Rails.application.routes.recognize_path(mv_style_guide.root_url) %>
+        <%= link_to "STYLEGUIDE", mv_style_guide.root_url %></div>
+      <%= else %>
+        STYLEGUIDE
+      <%= end %>
   </div>
   <div class="mv-flex-wrapper">
     <div class="mv-sidebar">
