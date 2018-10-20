@@ -10,7 +10,7 @@
 <body>
   <div class="mv-header">
     <div class="mv-header__logo">
-      <%= if Rails.application.routes.recognize_path(mv_style_guide.root_url) %>
+      <%= if Rails.application.routes.named_routes.routes.any? { |key, value| key.to_s === "mv_style_guide.root_url" } %>
         <%= link_to "STYLEGUIDE", mv_style_guide.root_url %></div>
       <%= else %>
         STYLEGUIDE
