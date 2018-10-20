@@ -10,7 +10,7 @@
 <body>
   <div class="mv-header">
     <div class="mv-header__logo">
-      <%= link_to "STYLEGUIDE", mv_style_guide.root_url %>
+      <%= link_to "STYLEGUIDE", mv_style_guide.root_url rescue "STYLEGUIDE"%>
     </div>
   </div>
   <div class="mv-flex-wrapper">
