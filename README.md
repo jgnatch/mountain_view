@@ -185,9 +185,9 @@ rails generate mountain_view:extra_pages
 A style guide will be automatically generated. This style guide never falls behind and it reflects your components in their latest version.
 
 #### Setting up the style guide
-1) Add the following line to your `routes.rb` file.
+1) Add the following line to your `routes.rb` file. `/mountain_view` can be any name you want.  `mv_style_guide` is expected in order to find the engine routes.  
 ```ruby
-mount MountainView::Engine => "/mountain_view"
+mount MountainView::Engine => "/mountain_view", as: mv_style_guide
 ```
 2) Create stubs for your components. These stubs will be the examples in the style guide.
 
