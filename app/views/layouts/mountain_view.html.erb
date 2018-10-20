@@ -10,11 +10,8 @@
 <body>
   <div class="mv-header">
     <div class="mv-header__logo">
-      <%= if Rails.application.routes.named_routes.routes.any? { |key, value| key.to_s === "mv_style_guide.root_url" } %>
-        <%= link_to "STYLEGUIDE", mv_style_guide.root_url %></div>
-      <%= else %>
-        STYLEGUIDE
-      <%= end %>
+      <%= link_to "STYLEGUIDE", mv_style_guide.root_url %>
+    </div>
   </div>
   <div class="mv-flex-wrapper">
     <div class="mv-sidebar">
