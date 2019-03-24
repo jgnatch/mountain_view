@@ -25,5 +25,9 @@ module MountainView
     def meta_classes
       @meta[:classes]
     end
+
+    def meta_partial
+      @meta[:partial]
+    end
   end
 end
