@@ -9,6 +9,7 @@ en:
       tip_stub_format_html: 'You should write stub examples like this:'
       hint_stub_creation_html: <span>Hint:</span>To see your component make sure you've created stubs
       tip_stub_creation_html: 'You should write stub examples here:'
+      instruction_heading: Instructions for use
     index:
       description_html:
         <p>Select one of the components from the side to view its examples and documentation.</p>
