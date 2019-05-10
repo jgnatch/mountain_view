@@ -256,7 +256,7 @@ E.g: `app/components/card/card.yml`
         :title: "Specific Example"
         :description: "Instructions for use case or other UX considerations"
         :classes: "black-background"
-        :partial: "card/card_styleguide_partial.html.erb"
+        :layout: "card/card_styleguide_layout.html.erb"
       :title: "Aspen Snowmass"
       :description: "Aspen Snowmass is a winter resort complex located in Pitkin County in western Colorado in the United States. Owned and operated by the Aspen Skiing Company it comprises four skiing/snowboarding areas on four adjacent mountains in the vicinity of the towns of Aspen and Snowmass Village."
       :link: "http://google.com"

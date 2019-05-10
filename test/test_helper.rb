@@ -26,7 +26,7 @@ def header_stub_meta
           title: "Specific Example",
           description: "Instructions for use case and UX considerations",
           classes: "black-background",
-          partial: "header/test_partial.html.erb"
+          layout: "header/test_layout.html.erb"
         },
         id: 1,
         title: "20 Mountains you didn't know they even existed",
