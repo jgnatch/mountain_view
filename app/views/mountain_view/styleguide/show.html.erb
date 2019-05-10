@@ -18,8 +18,9 @@
               <%= render_component @component.name, component_stub.properties.clone %>
             <% else %>
               <% content_for_name = "mv_#{@component.name}_#{index}" %>
-              <% content_for :"#{content_for_name}",
-                             render_component(@component.name, component_stub.properties.clone) %>
+              <% content_for content_for_name.to_sym do %>
+                <% render_component(@component.name, component_stub.properties.clone) %>
+              <% end %>
               <%= render component_stub.meta_partial, mv_content_for_name: content_for_name  %>
             <% end %>
           </div>
