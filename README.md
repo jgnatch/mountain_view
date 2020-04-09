@@ -140,6 +140,17 @@ Would output the following in your view:
 ### Assets
 You can require all the components CSS and JS automatically by requiring `mountain_view` in your main JS and CSS files.
 
+If you do not want to have rails compile the assets so you can handle them with another method such as Webpacker
+you can skip the asset configuration by setting `skip_assets` eg:
+
+```ruby
+#config/initializers/mountain_view.rb
+
+MountainView.configure do |config|
+  config.skip_assets = true
+end
+
+
 ### Global Stylesheets
 In case you want to add global stylesheets (e.g. reset, bootstrap, a grid system, etc) to your Mountain View components you can do it by calling them with an initializer
 

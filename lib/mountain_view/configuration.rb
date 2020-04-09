@@ -3,6 +3,7 @@ module MountainView
     attr_accessor :included_stylesheets
     attr_accessor :styleguide_path
     attr_accessor :extra_pages
+    attr_accessor :skip_assets
     attr_reader :components_path
 
     def initialize
