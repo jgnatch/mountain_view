@@ -22,4 +22,11 @@ class MountainViewConfigurationTest < ActiveSupport::TestCase
 
     assert_equal config.styleguide_path, "style-guide"
   end
+
+  test "set skip_assets option" do
+    config = MountainView::Configuration.new
+    config.skip_assets = true
+
+    assert config.skip_assets
+  end
 end

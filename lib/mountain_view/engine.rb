@@ -18,10 +18,12 @@ module MountainView
     end
 
     initializer "mountain_view.assets" do |_app|
-      Rails.application.config.assets.paths <<
-        MountainView.configuration.components_path
-      Rails.application.config.assets.precompile +=
-        %w[mountain_view/styleguide.css mountain_view/styleguide.js]
+      unless MountainView.configuration.skip_assets
+        Rails.application.config.assets.paths <<
+          MountainView.configuration.components_path
+        Rails.application.config.assets.precompile +=
+          %w[mountain_view/styleguide.css mountain_view/styleguide.js]
+      end
     end
 
     initializer "mountain_view.append_view_paths" do |_app|
