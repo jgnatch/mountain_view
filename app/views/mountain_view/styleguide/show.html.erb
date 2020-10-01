@@ -14,7 +14,13 @@
         <h2><%= component_stub.meta_title(@component.title, index) %></h2>
         <div class="mv-component">
           <div class="mv-component__item <%= component_stub.meta_classes %>">
-            <%= render_component @component.name, component_stub.properties.clone %>
+            <% if component_stub.meta_layout.blank? %>
+              <%= render_component @component.name, component_stub.properties.clone %>
+            <% else %>
+              <%= render component_stub.meta_layout do %>
+                <%=  render_component @component.name, component_stub.properties.clone %>
+              <% end %>
+            <% end %>
           </div>
           <div class="mv-component__description">
             <h3><%= t('mountain_view.show.instruction_heading') %></h3>

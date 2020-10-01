@@ -31,6 +31,15 @@ class MountainViewStubTest < ActiveSupport::TestCase
                'nil not set for stub meta without classes'
   end
 
+  def test_meta_layout
+    test_object = stub_to_test
+    assert_equal header_stub_meta[:stubs][0][:mv_stub_meta][:layout],
+                 test_object[0].meta_layout,
+                 'Stub Layout not found'
+    assert_nil test_object[1].meta_layout,
+               'nil not set for stub meta without partial'
+  end
+
   def test_properties
     test_object = stub_to_test
     assert_equal header_stub_meta[:stubs][0].except(:mv_stub_meta),
